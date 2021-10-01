@@ -42,3 +42,42 @@ select member_casual, count(*) as frequency
 from [Google Project].dbo.union$
 group by member_casual
 order by count(*) desc
+
+-- removing column 
+
+alter table [google project].dbo.union$
+drop column ride_time
+
+-- changing format on ride_length
+
+alter table union$
+add ride_time time;
+
+update union$
+set ride_time = Convert(time, ride_length)
+
+select *
+from union$
+
+alter table union$
+drop column ride_length
+
+-- number of classic vs electric bikes
+
+select rideable_type, count(*)
+from union$
+group by rideable_type
+order by count(*)
+
+-- member vs casual rides on specific day of the week
+
+select member_casual, 
+sum(case when day_of_week = 1 then 1 else 0 end) sunday,
+sum(case when day_of_week = 2 then 1 else 0 end) monday,
+sum(case when day_of_week = 3 then 1 else 0 end) tuesday,
+sum(case when day_of_week = 4 then 1 else 0 end) wednesday,
+sum(case when day_of_week = 5 then 1 else 0 end) thursday,
+sum(case when day_of_week = 6 then 1 else 0 end) friday,
+sum(case when day_of_week = 7 then 1 else 0 end) saturday
+from union$
+group by member_casual
