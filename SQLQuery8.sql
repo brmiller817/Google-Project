@@ -72,12 +72,12 @@ order by count(*)
 -- member vs casual rides on specific day of the week
 
 select member_casual, 
-sum(case when day_of_week = 1 then 1 else 0 end) sunday,
-sum(case when day_of_week = 2 then 1 else 0 end) monday,
-sum(case when day_of_week = 3 then 1 else 0 end) tuesday,
-sum(case when day_of_week = 4 then 1 else 0 end) wednesday,
-sum(case when day_of_week = 5 then 1 else 0 end) thursday,
-sum(case when day_of_week = 6 then 1 else 0 end) friday,
-sum(case when day_of_week = 7 then 1 else 0 end) saturday
+sum(case when day_of_week = 1 then 1 else 0 end) Sunday,
+sum(case when day_of_week = 2 then 1 else 0 end) Monday,
+sum(case when day_of_week = 3 then 1 else 0 end) Tuesday,
+sum(case when day_of_week = 4 then 1 else 0 end) Wednesday,
+sum(case when day_of_week = 5 then 1 else 0 end) Thursday,
+sum(case when day_of_week = 6 then 1 else 0 end) Friday,
+sum(case when day_of_week = 7 then 1 else 0 end) Saturday
 from union$
 group by member_casual
